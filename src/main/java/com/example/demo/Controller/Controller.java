@@ -35,13 +35,27 @@ public class Controller {
 
     // OK
     @PostMapping(path = "/product/add") // Map ONLY POST Requests
-    public @ResponseBody String addNewUser(@RequestParam String name, @RequestParam String desc,@RequestParam Float price) {
+    public @ResponseBody Optional<Products> addNewUser(@RequestParam String name, @RequestParam String desc,@RequestParam Float price) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        Products newProduct = new Products(desc,name,price);
+        long res = productsRepository.save(newProduct).getId();
+        int id = (int) res ;
+        return productsRepository.findById(id);
+
+    }
+
+    @PostMapping(path = "/dbproduct/add") // Map ONLY POST Requests
+    public @ResponseBody String dbaddNewUser(@RequestParam String name, @RequestParam String desc,@RequestParam Float price) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         Products newProduct = new Products(desc,name,price);
         productsRepository.save(newProduct);
+        System.out.println(productsRepository.save(newProduct));
         return "Saved";
     }
+
+
 
 
     }
