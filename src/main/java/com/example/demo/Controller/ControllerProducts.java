@@ -32,6 +32,11 @@ public class ControllerProducts {
         return servicesProducts.findById(id);
     }
 
+    @DeleteMapping("/del/{id}") // OK
+    public @ResponseBody Boolean delOneProductsById(@PathVariable Integer id) {
+        return servicesProducts.delById(id);
+    }
+
     @PostMapping(path = "/add") // NOK
     public @ResponseBody Optional<com.example.demo.Products.Products> addNewProducts(@RequestParam String name, @RequestParam String desc, @RequestParam Float price, @RequestParam int brands_id, @RequestParam int catSport_id) {
         Products myNewProducts = servicesProducts.AddNewProducts(desc,name,price,brands_id,catSport_id);

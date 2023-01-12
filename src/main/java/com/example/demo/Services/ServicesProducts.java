@@ -49,4 +49,16 @@ public class ServicesProducts {
             return null;
         }
     }
+
+    public Boolean delById(Integer id ){
+
+        productsRepository.findById(id);
+        System.out.println(productsRepository.findById(id).isPresent());
+        if ( productsRepository.findById(id).isPresent()){
+            productsRepository.delete(productsRepository.findById(id).get());
+            return true ;
+        }
+        return false;
+    }
+
 }
