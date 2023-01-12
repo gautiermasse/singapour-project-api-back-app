@@ -61,4 +61,14 @@ public class ServicesProducts {
         return false;
     }
 
+    public Boolean delByName(String name ){
+
+        productsRepository.findByName(name);
+        System.out.println(productsRepository.findByName(name).isPresent());
+        if ( productsRepository.findByName(name).isPresent()){
+            productsRepository.delete(productsRepository.findByName(name).get());
+            return true ;
+        }
+        return false;
+    }
 }
