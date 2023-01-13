@@ -28,11 +28,15 @@ public class ControllerBrands {
         return servicesBrands.findById(id);
     }
 
-    // POST
     @PostMapping(path = "/add") // NOK
     public @ResponseBody Optional<Brands> addNewProducts(@RequestParam String nameBrands) {
         Brands myNewBrands = servicesBrands.AddNewBrands(nameBrands);
         return Optional.ofNullable(myNewBrands);
+    }
+
+    @DeleteMapping("/del/{id}") // OK
+    public @ResponseBody Boolean delOneProductsById(@PathVariable Integer id) {
+        return servicesBrands.delById(id);
     }
 
 }

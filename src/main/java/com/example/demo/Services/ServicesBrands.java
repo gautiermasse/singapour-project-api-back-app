@@ -14,12 +14,11 @@ import java.util.Optional;
 public class ServicesBrands {
 
     private BrandsRepository brandsRepository;
-
+    private ServicesProducts servicesProducts;
     @Autowired
     public ServicesBrands(BrandsRepository brandsRepository) {
         this.brandsRepository = brandsRepository;
     }
-
 
     public Iterable<Brands> brandsList(){
         return brandsRepository.findAll();
@@ -42,5 +41,17 @@ public class ServicesBrands {
         }else {
             return null;
         }
+    }
+
+    // DELETE BRANDS IT'S NECESSARY TO DELETE ALL PRODUCTS
+    public Boolean delById(Integer id ){
+
+        brandsRepository.findById(id);
+        System.out.println(brandsRepository.findById(id).isPresent());
+        if ( brandsRepository.findById(id).isPresent()){
+            brandsRepository.delete(brandsRepository.findById(id).get());
+            return true ;
+        }
+        return false;
     }
 }

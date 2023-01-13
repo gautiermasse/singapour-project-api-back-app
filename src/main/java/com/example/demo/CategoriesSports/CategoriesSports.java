@@ -19,6 +19,8 @@ public class CategoriesSports {
     @Column(name = "nameOfCatSport" )
     private String nameOfCatSport;
 
+    public CategoriesSports() {
+    }
     public Integer getId() {
         return id;
     }
@@ -41,5 +43,18 @@ public class CategoriesSports {
 
     public void setNameOfCatSport(String nameOfCatSport) {
         this.nameOfCatSport = nameOfCatSport;
+    }
+
+    public CategoriesSports(String nameCategoriesSports) {
+        this.nameOfCatSport = nameCategoriesSports;
+    }
+
+    @Override
+    public String toString() {
+        return "CategoriesSports{" +
+                "id=" + id +
+                ", products=" + products +
+                ", nameOfCatSport='" + nameOfCatSport + '\'' +
+                '}';
     }
 }
